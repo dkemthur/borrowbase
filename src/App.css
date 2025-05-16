@@ -90,3 +90,11 @@
   border-radius: 6px;
 }
 
+/* App.css */
+.cropped-image {
+  width: 300px; /* Set the desired width */
+  height: 200px; /* Set the desired height */
+  object-fit: cover; /* Ensures the image covers the container */
+  object-position: center; /* Adjusts the cropping position */
+  border-radius: 8px; /* Optional: Adds rounded corners */
+}
