@@ -81,7 +81,7 @@ export default function BorrowBase() {
     const [request, setRequest] = useState<string>('');
     const [review, setReview] = useState<string>('');
     const [submittedRequests, setSubmittedRequests] = useState<string[]>([]);
-    const [activeTab, setActiveTab] = useState<'items' | 'request' | 'review' | 'about'>('items');
+    const [activeTab, setActiveTab] = useState<'items' | 'request' | 'review' | 'about' | 'stats'>('items');
     const [submittedReviews, setSubmittedReviews] = useState<ReviewEntry[]>([{
         message: 'Great initiative! Helped me find a camping tent for my trip last minute.',
         rating: 5
@@ -117,6 +117,7 @@ export default function BorrowBase() {
                 </button>
                 <button onClick={() => setActiveTab('about')} className={activeTab === 'about' ? 'active' : ''}>About
                 </button>
+                <button onClick={() => setActiveTab('stats')} className={activeTab === 'stats' ? 'active' : ''}>Stats</button>
             </nav>
 
             {activeTab === 'items' && (
@@ -279,6 +280,29 @@ export default function BorrowBase() {
                             alt="Landfill waste"
                             style={{maxWidth: '100%', width: '300px', borderRadius: '8px'}}
                         />
+                    </div>
+                </section>
+            )}
+
+            {activeTab === 'stats' && (
+                <section>
+                    <h2 className="section-title">Community Impact</h2>
+                    <p>Items shared: 53</p>
+                    <p>Requests submitted: 27</p>
+                    <p>Reviews shared: {submittedReviews.length}</p>
+                    <div style={{ marginTop: '2rem' }}>
+                        <img
+                            src="https://media.licdn.com/dms/image/v2/C4D12AQGTPokDX6EWig/article-cover_image-shrink_720_1280/article-cover_image-shrink_720_1280/0/1619170711672?e=2147483647&v=beta&t=5Bz527MSS3PV74qLk9mY0GPDF66UiVhIRZy56RhF5Gw"
+                            alt="Love the Earth"
+                            style={{ width: '150px', animation: 'pulse 2s infinite' }}
+                        />
+                        <style>
+                            {`@keyframes pulse {
+                0% { transform: scale(1); opacity: 1; }
+                50% { transform: scale(1.1); opacity: 0.8; }
+                100% { transform: scale(1); opacity: 1; }
+              }`}
+                        </style>
                     </div>
                 </section>
             )}
