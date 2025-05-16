@@ -1,8 +1,8 @@
-import { useState } from 'react';
-import { Card, CardContent } from './components/ui/card';
-import { Button } from "./components/ui/button";
-import { Input } from './components/ui/input';
-import { Textarea } from "./components/ui/textarea";
+import {useState} from 'react';
+import {Card, CardContent} from './components/ui/card';
+import {Button} from "./components/ui/button";
+import {Input} from './components/ui/input';
+import {Textarea} from "./components/ui/textarea";
 import './App.css';
 
 interface BorrowItem {
@@ -43,7 +43,7 @@ const itemsForBorrow: BorrowItem[] = [
         image: 'https://i.etsystatic.com/48775223/r/il/9b0c68/6644627524/il_1588xN.6644627524_ip0f.jpg',
         contact: 'dave@example.com',
     },
-    
+
     {
         id: 6,
         name: 'Board Game: Catan',
@@ -83,15 +83,20 @@ export default function BorrowBase() {
     const [submittedRequests, setSubmittedRequests] = useState<string[]>([]);
     const [activeTab, setActiveTab] = useState<'items' | 'request' | 'review' | 'about'>('items');
     const [submittedReviews, setSubmittedReviews] = useState<ReviewEntry[]>([{
-        message: 'Great initiative! Helped me find a camping tent last minute.',
+        message: 'Great initiative! Helped me find a camping tent for my trip last minute.',
         rating: 5
     }, {
         message: 'Nice idea, but would be good to add categories.',
         rating: 4
     }, {
-        message: 'I love that this is community-powered. Keep going!',
+        message: 'Easily able to borrow a dress for a casual party',
         rating: 5
-    }]);
+    },
+        {
+            message: 'Was able to find a bike for my quick trip and did not have to spend money on a new one!',
+            rating: 5
+        }
+        ]);
 
     const [newItemDesc, setNewItemDesc] = useState('');
     const [newItemContact, setNewItemContact] = useState('');
@@ -102,10 +107,16 @@ export default function BorrowBase() {
             <h1 className="title">BorrowBase</h1>
 
             <nav className="tab-nav">
-                <button onClick={() => setActiveTab('items')} className={activeTab === 'items' ? 'active' : ''}>Items</button>
-                <button onClick={() => setActiveTab('request')} className={activeTab === 'request' ? 'active' : ''}>Request</button>
-                <button onClick={() => setActiveTab('review')} className={activeTab === 'review' ? 'active' : ''}>Review</button>
-                <button onClick={() => setActiveTab('about')} className={activeTab === 'about' ? 'active' : ''}>About</button>
+                <button onClick={() => setActiveTab('items')} className={activeTab === 'items' ? 'active' : ''}>Items
+                </button>
+                <button onClick={() => setActiveTab('request')}
+                        className={activeTab === 'request' ? 'active' : ''}>Request
+                </button>
+                <button onClick={() => setActiveTab('review')}
+                        className={activeTab === 'review' ? 'active' : ''}>Review
+                </button>
+                <button onClick={() => setActiveTab('about')} className={activeTab === 'about' ? 'active' : ''}>About
+                </button>
             </nav>
 
             {activeTab === 'items' && (
@@ -115,7 +126,7 @@ export default function BorrowBase() {
                         {itemsForBorrow.map((item) => (
                             <Card key={item.id} className="item-card" onClick={() => setSelectedItem(item)}>
                                 <CardContent>
-                                    <img src={item.image} alt={item.name} className="cropped-image" />
+                                    <img src={item.image} alt={item.name} className="cropped-image"/>
                                     <p className="item-name">{item.name}</p>
                                     {selectedItem?.id === item.id && (
                                         <div className="contact-info pop-out">
@@ -161,7 +172,7 @@ export default function BorrowBase() {
                         </div>
                     )}
 
-                    <hr style={{ margin: '2rem 0' }} />
+                    <hr style={{margin: '2rem 0'}}/>
 
                     <h2 className="section-title">Have Something to Offer?</h2>
                     <p className="description">Add your item for others to borrow.</p>
@@ -208,7 +219,7 @@ export default function BorrowBase() {
                     />
                     <Button onClick={() => {
                         if (review) {
-                            setSubmittedReviews([...submittedReviews, { message: review, rating: 5 }]);
+                            setSubmittedReviews([...submittedReviews, {message: review, rating: 5}]);
                             setReview('');
                         }
                     }}>
@@ -233,10 +244,42 @@ export default function BorrowBase() {
                 <section>
                     <h2 className="section-title">About Overconsumption</h2>
                     <p>
-                        Overconsumption contributes to resource depletion, environmental degradation, and waste. To combat it,
-                        consider borrowing or sharing items instead of purchasing new ones, recycling, and buying second-hand when possible.
-                        BorrowBase is a step toward creating a sustainable, community-focused culture.
+                        Overconsumption is the excessive use of resources beyond our needs, driven by a culture of
+                        convenience, fast fashion,
+                        and single-use products. It leads to overflowing landfills, air and water pollution, and
+                        irreversible environmental harm.
                     </p>
+                    <p>
+                        A large percentage of goods we buy end up in the trash within a year. Clothing, electronics, and
+                        household items are often
+                        discarded while still usable, contributing to massive waste. This cycle depletes natural
+                        resources and creates unnecessary
+                        emissions from production and transportation.
+                    </p>
+                    <p>
+                        Borrowing, sharing, and reusing help reduce the demand for new production and promote a mindful
+                        approach to consumption.
+                        By participating in community initiatives like BorrowBase, you're directly reducing landfill
+                        contributions and saving valuable
+                        resources.
+                    </p>
+                    <div style={{display: 'flex', flexWrap: 'wrap', gap: '1rem', marginTop: '1rem'}}>
+                        <img
+                            src="https://www.greenpeace.org/static/planet4-international-stateless/2017/05/GP0STR51M_Medium_res-1024x684.jpg"
+                            alt="Overconsumption shopping"
+                            style={{maxWidth: '100%', width: '300px', borderRadius: '8px'}}
+                        />
+                        <img
+                            src="https://www.hwhenvironmental.com/wp-content/uploads/2019/06/1.png"
+                            alt="Landfill waste"
+                            style={{maxWidth: '100%', width: '300px', borderRadius: '8px'}}
+                        />
+                        <img
+                            src="https://www.vice.com/wp-content/uploads/sites/2/2022/04/1649077695561-gettyimages-1334518699.jpeg"
+                            alt="Landfill waste"
+                            style={{maxWidth: '100%', width: '300px', borderRadius: '8px'}}
+                        />
+                    </div>
                 </section>
             )}
         </div>
