@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Card, CardContent } from './components/ui/card';
 import { Button } from "./components/ui/button";
+import { Input } from './components/ui/input';
 import { Textarea } from "./components/ui/textarea";
 import './App.css';
 
@@ -68,6 +69,10 @@ const itemsForBorrow: BorrowItem[] = [
     },
 ];
 
+interface ReviewEntry {
+    message: string;
+    rating: number;
+}
 
 
 export default function BorrowBase() {
@@ -75,8 +80,21 @@ export default function BorrowBase() {
     const [request, setRequest] = useState<string>('');
     const [review, setReview] = useState<string>('');
     const [submittedRequests, setSubmittedRequests] = useState<string[]>([]);
-    const [submittedReviews, setSubmittedReviews] = useState<string[]>([]);
     const [activeTab, setActiveTab] = useState<'items' | 'request' | 'review' | 'about'>('items');
+    const [submittedReviews, setSubmittedReviews] = useState<ReviewEntry[]>([{
+        message: 'Great initiative! Helped me find a camping tent last minute.',
+        rating: 5
+    }, {
+        message: 'Nice idea, but would be good to add categories.',
+        rating: 4
+    }, {
+        message: 'I love that this is community-powered. Keep going!',
+        rating: 5
+    }]);
+
+    const [newItemDesc, setNewItemDesc] = useState('');
+    const [newItemContact, setNewItemContact] = useState('');
+    const [newItemImage, setNewItemImage] = useState<File | null>(null);
 
     return (
         <div className="container">
@@ -141,11 +159,46 @@ export default function BorrowBase() {
                             </ul>
                         </div>
                     )}
+
+                    <hr style={{ margin: '2rem 0' }} />
+
+                    <h2 className="section-title">Have Something to Offer?</h2>
+                    <p className="description">Add your item for others to borrow.</p>
+                    <Textarea
+                        placeholder="Describe the item you'd like to offer..."
+                        value={newItemDesc}
+                        onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => setNewItemDesc(e.target.value)}
+                    />
+                    <Input
+                        type="email"
+                        placeholder="Your contact email"
+                        value={newItemContact}
+                        onChange={(e: React.ChangeEvent<HTMLInputElement>) => setNewItemContact(e.target.value)}
+                    />
+                    <Input
+                        type="file"
+                        accept="image/*"
+                        onChange={(e) => setNewItemImage(e.target.files?.[0] || null)}
+                    />
+                    <div className="button-row">
+                        <Button onClick={() => {
+                            if (newItemDesc && newItemContact && newItemImage) {
+                                alert('Thank you for contributing! Your item has been submitted.');
+                                setNewItemDesc('');
+                                setNewItemContact('');
+                                setNewItemImage(null);
+                            } else {
+                                alert('Please fill in all fields and select an image.');
+                            }
+                        }}>
+                            Submit Your Item
+                        </Button>
+                    </div>
                 </section>
             )}
 
             {activeTab === 'review' && (
-                <section>
+                <section className="review-section">
                     <h2 className="section-title">Leave an Anonymous Review</h2>
                     <Textarea
                         placeholder="Share your feedback about BorrowBase..."
@@ -154,12 +207,24 @@ export default function BorrowBase() {
                     />
                     <Button onClick={() => {
                         if (review) {
-                            setSubmittedReviews([...submittedReviews, review]);
+                            setSubmittedReviews([...submittedReviews, { message: review, rating: 5 }]);
                             setReview('');
                         }
                     }}>
                         Submit Review
                     </Button>
+
+                    <div className="submitted-list">
+                        <h3>What others are saying</h3>
+                        <ul>
+                            {submittedReviews.map((r, i) => (
+                                <li key={i}>
+                                    <p>"{r.message}"</p>
+                                    <p>Rating: {'★'.repeat(r.rating)}{'☆'.repeat(5 - r.rating)}</p>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
                 </section>
             )}
 

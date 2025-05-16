@@ -98,3 +98,40 @@
   object-position: center; /* Adjusts the cropping position */
   border-radius: 8px; /* Optional: Adds rounded corners */
 }
+
+.request-section textarea,
+.request-section input {
+  display: block;
+  width: 100%;
+  max-width: 600px;
+  margin: 0.5rem 0 1rem;
+  padding: 0.5rem;
+  font-size: 1rem;
+}
+
+.request-section .button-row {
+  margin-bottom: 2rem;
+}
+
+.request-section .submitted-list ul {
+  padding-left: 1.5rem;
+}
+
+.request-section .submitted-list li {
+  margin-bottom: 0.25rem;
+}
+
+
+.review-section textarea {
+  display: block;
+  width: 100%;
+  max-width: 600px;
+  margin: 0.5rem 0 1rem;
+  padding: 0.5rem;
+  font-size: 1rem;
+}
+
+.review-section button {
+  margin-bottom: 2rem;
+}
+
