@@ -23,19 +23,19 @@ const itemsForBorrow: BorrowItem[] = [
         id: 1,
         name: 'The Alchemist (Book)',
         image: 'https://thesciencesurvey.com/wp-content/uploads/2023/02/IMG-20230210-WA0000.jpeg?auto=format&fit=crop&w=300&q=80',
-        contact: 'alice@example.com',
+        contact: 'tim.smith@yahoo.com',
     },
     {
         id: 2,
         name: 'Camping Tent',
         image: 'https://www.tripsavvy.com/thmb/-DkDDUjTS3nqisOa1XEd2cTf8l4=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/campsite5-bde7fa2945cd45ef994556195fc43e7f.jpg',
-        contact: 'bob@example.com',
+        contact: 'jones@hotmail.com',
     },
     {
         id: 3,
         name: 'Acoustic Guitar',
         image: 'https://i.etsystatic.com/13219099/r/il/333ab3/5803100305/il_1588xN.5803100305_d0p3.jpg',
-        contact: 'carol@example.com',
+        contact: 'carol@yahoo.com',
     },
     {
         id: 4,
