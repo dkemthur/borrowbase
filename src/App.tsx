@@ -14,6 +14,12 @@ interface BorrowItem {
 
 const itemsForBorrow: BorrowItem[] = [
     {
+        id: 5,
+        name: 'Electric Drill',
+        image: 'https://i.ebayimg.com/images/g/szkAAOSw-OFkz9sv/s-l1600.webp',
+        contact: 'vikram.rao@gmail.com',
+    },
+    {
         id: 1,
         name: 'The Alchemist (Book)',
         image: 'https://thesciencesurvey.com/wp-content/uploads/2023/02/IMG-20230210-WA0000.jpeg?auto=format&fit=crop&w=300&q=80',
@@ -37,12 +43,7 @@ const itemsForBorrow: BorrowItem[] = [
         image: 'https://i.etsystatic.com/48775223/r/il/9b0c68/6644627524/il_1588xN.6644627524_ip0f.jpg',
         contact: 'dave@example.com',
     },
-    {
-        id: 5,
-        name: 'Electric Drill',
-        image: 'https://i.ebayimg.com/images/g/szkAAOSw-OFkz9sv/s-l1600.webp',
-        contact: 'nancy@gmail.com',
-    },
+    
     {
         id: 6,
         name: 'Board Game: Catan',
